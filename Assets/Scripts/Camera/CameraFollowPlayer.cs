@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraFollowPlayer : MonoBehaviour
 {
 	[SerializeField] private GameObject player;
-	[SerializeField] private float maxPlayerOffset = 5f;
+	[SerializeField] private float maxPlayerOffset = 5f, cameraSafeDistance = 0.1f;
 	private float playerOffset;
-	private Vector3 playerLastPos, playerCurrentPos;
+	private float playerLastPosX, playerCurrentPosX, playerMovementSign;
 	private float cameraYPos, cameraZPos;
 
 	void Start()
@@ -18,10 +18,12 @@ public class CameraFollowPlayer : MonoBehaviour
 
     void Update()
     {
-		playerLastPos = playerCurrentPos;
-		playerCurrentPos = player.transform.position;
+    	playerMovementSign = Mathf.Sign(playerCurrentPosX - playerLastPosX);
 
-		if (playerLastPos != playerCurrentPos)
+		playerLastPosX = playerCurrentPosX;
+		playerCurrentPosX = player.transform.position.x;
+
+		if (playerLastPosX != playerCurrentPosX)
 		{
 			if (Mathf.Abs(playerOffset) > maxPlayerOffset)
 			{
@@ -32,9 +34,12 @@ public class CameraFollowPlayer : MonoBehaviour
 		}
 		else
 		{
+			if (Mathf.Abs(playerOffset) > maxPlayerOffset)
+			{
+				transform.position += new Vector3(playerMovementSign * cameraSafeDistance, 0f, 0f);
+			}
+
 			playerOffset = 0f;
 		}
-		
-		print(playerOffset);
     }
 }

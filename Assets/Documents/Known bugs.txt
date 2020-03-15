@@ -1,5 +1,1 @@
-﻿CameraFollowPlayer:
-	- When moving the player again in the same direction quickly after stopping when the camera is following him, the offset grows too big and the camera "glues" to the player, it detaches only after stopping for a slightly longer time or movement in the opposite direction.
-
-PlayerSwitchLanes
-	- For some reason, when the Lane Width is changed to a number greater than or equal to 2 the variable responsible for info if it was moved last frame holds the "true" variable when moved down and back up and next switches are impossible. The problem needs to be examined in detail.
+﻿

@@ -353,3 +353,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 850741595}
   maxPlayerOffset: 5
+  cameraSafeDistance: 0.1

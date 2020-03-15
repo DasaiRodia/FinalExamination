@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class PlayerSwitchLanes : MonoBehaviour
 {
-	[SerializeField] private float laneWidth = 1f;
+	[SerializeField] private float laneWidth = 1.5f;
 	[SerializeField] private int laneNumber = 1;
 	[SerializeField] private int lanesCount = 3;
 	private bool wasMovedLastFrame = false;
@@ -40,7 +40,7 @@ public class PlayerSwitchLanes : MonoBehaviour
         		}
 	        }
 		}
-		else if(Mathf.Abs(transform.position.y - initialPosY) == laneWidth || transform.position.y == initialPosY)
+		else if(Mathf.Approximately(Mathf.Abs(transform.position.y - initialPosY), laneWidth) || Mathf.Approximately(transform.position.y, initialPosY))
 	    {
 	       	wasMovedLastFrame = false;
 	    }
